@@ -1,0 +1,45 @@
+create database votapp;
+use votapp;
+CREATE TABLE universidad(
+  codigo_uni INT primary key,
+  nombre_uni VARCHAR(45) NOT NULL
+);
+ create table programa(
+     codigo_pro varchar(15) primary key,
+     nombre_pro varchar(70) not null,
+     snies_pro varchar(50) not null,
+     codigo_uni INT,
+     constraint fk_codigo_uni2 foreign key(codigo_uni) references universidad (codigo_uni)
+  );
+CREATE TABLE candidato (
+  documento_can int primary key,
+  nombre_can VARCHAR(45) NOT NULL,
+  apellido_can VARCHAR(45) NOT NULL,
+  fechaNac_can DATE,
+  telefono_can INT,
+  codigo_pro varchar(15),
+  constraint fk_codigo_pro2 foreign key(codigo_pro) references programa (codigo_pro)
+  );
+  CREATE TABLE estudiantes (
+  documento_est int primary key,
+  nombre_est VARCHAR(45) NOT NULL,
+  apellido_est VARCHAR(45) NOT NULL,
+  telefono_est INT,
+  correo_est VARCHAR(45),
+  clave_est VARCHAR(8) NOT NULL,
+  estadoVoto INT NOT NULL,
+  codigo_pro varchar(15),
+  constraint fk_codigo_pro foreign key(codigo_pro) references programa(codigo_pro)
+  );
+create table estadistica(
+   ide_est int primary key,
+   documento_can int,
+   cantidad_votos int,
+   cantidad_blanco int,
+   cantidad_nulos int,
+   constraint fk_documento_can foreign key(documento_can) references candidato(documento_can)
+);
+    
+    
+  
+  
