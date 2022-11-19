@@ -1,0 +1,37 @@
+package com.backend.votaciones.Models;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "universidad")
+public class Universidad implements Serializable {
+     
+    @Id
+    //@NotEmpty(message = "El campo identificardor de la universidad no  debe estar vacio")
+    @Column(name="codigo_uni")
+    private int codigo_uni;
+    @NotEmpty(message = "El campo nombre de la universidad no debe estar vacio")
+    @Size(min = 3, max = 44, message = "El campo nombre de la universidad debe tener minimo 3 caracteres y maximo 44 caracteres ")
+    @Column(name="nombre_uni")
+    private String nombre_uni;
+    
+    @Override
+    public String toString() {
+        return "Universidad [codigo_uni=" + codigo_uni + ", nombre_uni=" + nombre_uni + "]";
+    }
+
+    
+
+}
